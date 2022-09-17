@@ -19,7 +19,7 @@ endif
 
 debug:
 ifneq ("$(wildcard ./include/key.h)","")
-	KCPPFLAGS="${KCPPFLAGS} -DDEBUG" $(MAKE) -C $(KDIR) M=$(PWD) modules
+	KCPPFLAGS="${KCPPFLAGS} -DDEBUG" $(MAKE) -C $(KDIR) M=$(PWD) modules compile_commands.json
 	rm -fr *.o .*.cmd Module.symvers modules.order drawbridge.mod.c
 else
 	@echo "[!] Please ensure you've generated a public key, and that key.h is in the include/ directory"
@@ -29,7 +29,7 @@ endif
 release:
 ifneq ("$(wildcard ./include/key.h)","")
 	$(MAKE) -C $(KDIR) M=$(PWD) modules
-	rm -fr *.o .*.cmd Module.symvers modules.order drawbridge.mod.c
+	rm -fr *.o .*.cmd Module.symvers modules.order drawbridge.mod.c compile_commands.json
 	#cp test.sh $(TARGET).ko_test
 else
 	@echo "[!] Please ensure you've generated a public key, and that key.h is in the include/ directory"
